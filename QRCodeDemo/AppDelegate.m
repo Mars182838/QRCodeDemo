@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "MainViewController.h"
 
 @implementation AppDelegate
 
@@ -18,7 +19,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    MainViewController *mainController = [[MainViewController alloc] initWithNibName:nil bundle:nil];
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:mainController];
+    self.window.rootViewController = navController;
+    
+    //先使用一下ZBarReaderView这个类，然后在 xib 文件中引用它时就不会报错
+    [ZBarReaderView class];
+
+    [mainController release];
+    [navController release];
     return YES;
 }
 							
